@@ -23,10 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 const mysql = require('mysql2/promise');
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
+  host: process.env.DB_HOST || '34.129.219.151',
   user: process.env.DB_USER || 'root',
-  port: process.env.DB_PORT || 3307,
-  password: process.env.DB_PASSWORD || 'root',
+  port: process.env.DB_PORT || 3306,
+  password: process.env.DB_PASSWORD || 'Admin@FIT5120',
   database: process.env.DB_NAME || 'melbourne_smart_parking',
   waitForConnections: true,
   connectionLimit: 10,
