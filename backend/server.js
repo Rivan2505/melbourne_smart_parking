@@ -13,7 +13,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000', 
     'http://localhost:3001',
-    'https://melbourne-smart-parking.vercel.app'
+    'https://melbourne-smart-parking.vercel.app',
+    'https://parkingmelbourne.me'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
