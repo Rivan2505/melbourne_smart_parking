@@ -1,0 +1,6 @@
+PORT=5000
+NODE_ENV=development
+DB_HOST=localhost
+DB_USER=parking_app
+DB_PASSWORD=parking123
+DB_NAME=melbourne_smart_parking

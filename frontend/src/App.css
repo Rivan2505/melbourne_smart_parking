@@ -1,0 +1,44 @@
+/* Add this to your App.css or index.css */
+
+/* Global styles for fixed header */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure all pages account for fixed header */
+.app-container {
+  min-height: 100vh;
+}
+
+/* For all pages except home (which handles its own padding) */
+.page-content {
+  padding-top: 100px; /* Adjust based on your header height */
+  min-height: calc(100vh - 100px);
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation classes for home page */
+.fade-in {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
