@@ -10,10 +10,14 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001','https://melbourne-smart-parking.vercel.app','https://melbourne-smart-parking-backend.vercel.app/api/analytics/summary', 'https://melbourne-smart-parking-backend.vercel.app/api/analytics/occupancy?days=7','https://melbourne-smart-parking-backend.vercel.app/api/availability/current','https://melbourne-smart-parking-backend.vercel.app/api/parking-spots'],
+  origin: [
+    'http://localhost:3000', 
+    'http://localhost:3001',
+    'https://melbourne-smart-parking.vercel.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
 app.use(morgan('combined'));
 app.use(express.json());
@@ -40,7 +44,7 @@ const dbConfig = {
 // Create connection pool
 const pool = mysql.createPool(dbConfig);
 
-// Test database connection
+// Test database connection with better error handling
 pool.getConnection()
   .then(connection => {
     console.log('✅ Database connected successfully');
@@ -48,7 +52,25 @@ pool.getConnection()
   })
   .catch(err => {
     console.error('❌ Database connection failed:', err);
+    // Don't crash the server, just log the error
+    // The server will still start and handle requests gracefully
   });
+
+// Database connection check middleware
+const checkDatabaseConnection = async (req, res, next) => {
+  try {
+    const connection = await pool.getConnection();
+    connection.release();
+    next();
+  } catch (error) {
+    console.error('Database connection error in middleware:', error);
+    res.status(503).json({ 
+      success: false, 
+      message: 'Database temporarily unavailable',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+};
 
 // Routes
 app.get('/', (req, res) => {
@@ -56,6 +78,15 @@ app.get('/', (req, res) => {
     message: 'Melbourne Smart Parking API',
     version: '1.0.0',
     status: 'running'
+  });
+});
+
+// Health check endpoint (no database required)
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
   });
 });
 
@@ -85,7 +116,15 @@ app.get('/api/parking-spots', async (req, res) => {
     res.json({ success: true, data: rows });
   } catch (error) {
     console.error('Error fetching parking spots:', error);
-    res.status(500).json({ success: false, message: 'Internal server error' });
+    if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
+      res.status(503).json({ 
+        success: false, 
+        message: 'Database temporarily unavailable',
+        error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      });
+    } else {
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
   }
 });
 
