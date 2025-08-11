@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://melbourne-smart-parking-backend.vercel.app/api';
+const API_BASE_URL = 'https://melbourne-smart-parking-backend.vercel.app';
 
 // API Service class
 class ApiService {
