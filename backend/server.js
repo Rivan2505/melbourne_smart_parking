@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001','https://melbourne-smart-parking.vercel.app','https://melbourne-smart-parking-backend.vercel.app/api/analytics/summary', 'https://melbourne-smart-parking-backend.vercel.app/api/analytics/occupancy?days=7'],
+  origin: ['http://localhost:3000', 'http://localhost:3001','https://melbourne-smart-parking.vercel.app','https://melbourne-smart-parking-backend.vercel.app/api/analytics/summary', 'https://melbourne-smart-parking-backend.vercel.app/api/analytics/occupancy?days=7','https://melbourne-smart-parking-backend.vercel.app/api/availability/current','https://melbourne-smart-parking-backend.vercel.app/api/parking-spots'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
