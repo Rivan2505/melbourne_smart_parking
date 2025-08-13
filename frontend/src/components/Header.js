@@ -41,13 +41,13 @@ const Header = ({onLogout}) => {
           >
             Eco Commuting
           </Link>
-          <button 
+          {/* <button 
             className="logout-button"
             onClick={handleLogout}
             title="Logout"
           >
             🔓 Logout
-          </button>
+          </button> */}
         </nav>
       </div>
     </header>
