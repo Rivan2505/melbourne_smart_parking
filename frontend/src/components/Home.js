@@ -95,7 +95,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* NEW: Solution Section */}
+      {/* Solution Section */}
       <div className="solution-section">
         <div className="solution-container">
           <div className="solution-header">
@@ -137,6 +137,21 @@ const Home = () => {
                 Comprehensive analytics helping both individuals and city planners make informed decisions
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* NEW: More Insights CTA Section */}
+      <div className="insights-cta-section">
+        <div className="insights-cta-container">
+          <div className="insights-cta-content">
+            <h2 className="insights-cta-title">Want to Learn More?</h2>
+            <p className="insights-cta-subtitle">
+              Explore detailed analytics, growth trends, and data-driven insights about Melbourne's parking challenges and urban mobility patterns.
+            </p>
+            <Link to="/data-insights" className="insights-button">
+              More Insights
+            </Link>
           </div>
         </div>
       </div>

@@ -626,3 +626,87 @@
     font-size: 1rem;
   }
 }
+
+/* More Insights Button Section - Add this to your Home.css */
+.insights-cta-section {
+  background: white;
+  padding: 60px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.insights-cta-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.insights-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.insights-cta-title {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.insights-cta-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.insights-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.insights-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+/* Mobile styles for insights CTA */
+@media (max-width: 768px) {
+  .insights-cta-section {
+    padding: 40px 0;
+  }
+  
+  .insights-cta-title {
+    font-size: 1.8rem;
+  }
+  
+  .insights-cta-subtitle {
+    font-size: 1rem;
+  }
+  
+  .insights-button {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .insights-cta-title {
+    font-size: 1.6rem;
+  }
+  
+  .insights-cta-subtitle {
+    font-size: 0.95rem;
+  }
+}
