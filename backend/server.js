@@ -874,5 +874,5 @@ if (process.env.NODE_ENV !== 'production' && require.main === module) {
     console.log(`🚀 Melbourne Smart Parking API running on port ${PORT}`);
     console.log(`📊 Database: ${dbConfig.database}`);
     console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
-  });
+  }); 
 }
